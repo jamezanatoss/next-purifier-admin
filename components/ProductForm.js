@@ -23,11 +23,11 @@ export default function ProductForm({
   const [isUploading,setIsUploading] = useState(false);
   const [categories,setCategories] = useState([]);
   const router = useRouter();
-  // useEffect(() => {
-  //   axios.get('/api/categories').then(result => {
-  //     setCategories(result.data);
-  //   })
-  // }, []);
+  useEffect(() => {
+    axios.get('/api/categories').then(result => {
+      setCategories(result.data);
+    })
+  }, []);
   async function saveProduct(ev) {
     ev.preventDefault();
     const data = {
@@ -91,7 +91,7 @@ export default function ProductForm({
           placeholder="product name"
           value={title}
           onChange={ev => setTitle(ev.target.value)}/>
-        {/* <label>Category</label>
+        <label>Category</label>
         <select value={category}
                 onChange={ev => setCategory(ev.target.value)}>
           <option value="">Uncategorized</option>
@@ -114,7 +114,7 @@ export default function ProductForm({
               </select>
             </div>
           </div>
-        ))} */}
+        ))}
         <label>
           Photos
         </label>
@@ -150,7 +150,7 @@ export default function ProductForm({
           value={description}
           onChange={ev => setDescription(ev.target.value)}
         />
-        <label>ราคา</label>
+        <label>Price (in USD)</label>
         <input
           type="number" placeholder="price"
           value={price}
