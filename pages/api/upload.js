@@ -3,7 +3,7 @@ import {PutObjectCommand, S3Client} from '@aws-sdk/client-s3';
 import fs from 'fs';
 import mime from 'mime-types';
 import {mongooseConnect} from "@/lib/mongoose";
-import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
+//import {isAdminRequest} from "@/pages/api/auth/[...nextauth]";
 const bucketName = 'next-purifier';
 
 export default async function handle(req,res) {

@@ -85,16 +85,16 @@ export default function ProductForm({
 
   return (
       <form onSubmit={saveProduct}>
-        <label>Product name</label>
+        <label>ชื่อสินค้า</label>
         <input
           type="text"
-          placeholder="product name"
+          placeholder="ชื่อสินค้า"
           value={title}
           onChange={ev => setTitle(ev.target.value)}/>
-        <label>Category</label>
+        <label>หมวดหมู่</label>
         <select value={category}
                 onChange={ev => setCategory(ev.target.value)}>
-          <option value="">Uncategorized</option>
+          <option value="">ไม่มีหมวดหมู่</option>
           {categories.length > 0 && categories.map(c => (
             <option key={c._id} value={c._id}>{c.name}</option>
           ))}
@@ -116,7 +116,7 @@ export default function ProductForm({
           </div>
         ))}
         <label>
-          Photos
+          รูปสินค้า
         </label>
         <div className="mb-2 flex flex-wrap gap-1">
           <ReactSortable
@@ -139,20 +139,20 @@ export default function ProductForm({
               <path strokeLinecap="round" strokeLinejoin="round" d="M3 16.5v2.25A2.25 2.25 0 005.25 21h13.5A2.25 2.25 0 0021 18.75V16.5m-13.5-9L12 3m0 0l4.5 4.5M12 3v13.5" />
             </svg>
             <div>
-              Add image
+              เพิ่มรูปภาพ
             </div>
             <input type="file" onChange={uploadImages} className="hidden"/>
           </label>
         </div>
-        <label>Description</label>
+        <label>คำอธิบาย</label>
         <textarea
-          placeholder="description"
+          placeholder="เพิ่มคำอธิบาย"
           value={description}
           onChange={ev => setDescription(ev.target.value)}
         />
-        <label>Price (in USD)</label>
+        <label>ราคา</label>
         <input
-          type="number" placeholder="price"
+          type="number" placeholder="เพิ่มราคา"
           value={price}
           onChange={ev => setPrice(ev.target.value)}
         />
