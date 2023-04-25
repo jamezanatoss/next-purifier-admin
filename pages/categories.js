@@ -112,7 +112,7 @@ function Categories({ swal }) {
           <select
             onChange={ev => setParentCategory(ev.target.value)}
             value={parentCategory}>
-            <option value="">ไม่มีแม่ของหมวดหมู่</option>
+            <option value="">ไม่มี Parent ของหมวดหมู่</option>
             {categories.length > 0 && categories.map(category => (
               <option key={category._id} value={category._id}>{category.name}</option>
             ))}
@@ -177,7 +177,7 @@ function Categories({ swal }) {
           <thead>
             <tr>
               <td>ชื่อหมวดหมู่สินค้า</td>
-              <td>แม่ของหมวดหมู่สินค้า</td>
+              <td>Parent ของหมวดหมู่สินค้า</td>
               <td></td>
             </tr>
           </thead>
