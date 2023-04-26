@@ -99,24 +99,24 @@ function Categories({ swal }) {
       <h1>Categories</h1>
       <label>
         {editedCategory
-          ? `แก้ไขหมวดหมู่สินค้า ${editedCategory.name}`
-          : 'สร้างหมวดหมู่สินค้าใหม่'}
+          ? `แก้ไขแบรนด์สินค้า ${editedCategory.name}`
+          : 'สร้างแบรนด์สินค้าใหม่'}
       </label>
       <form onSubmit={saveCategory}>
         <div className="flex gap-1">
           <input
             type="text"
-            placeholder={'ชื่อหมวดหมู่สินค้า'}
+            placeholder={'ชื่อแบรนด์สินค้า'}
             onChange={ev => setName(ev.target.value)}
             value={name} />
-          <select
+          {/* <select
             onChange={ev => setParentCategory(ev.target.value)}
             value={parentCategory}>
             <option value="">ไม่มี Parent ของหมวดหมู่</option>
             {categories.length > 0 && categories.map(category => (
               <option key={category._id} value={category._id}>{category.name}</option>
             ))}
-          </select>
+          </select> */}
         </div>
         <div className="mb-2">
           <label className="block">คุณสมบัติ</label>
@@ -133,13 +133,13 @@ function Categories({ swal }) {
                 className="mb-0"
                 onChange={ev => handlePropertyNameChange(index, property, ev.target.value)}
                 value={property.name}
-                placeholder="พวกสี" />
+                placeholder="ชื่อคุณสมบัติ" />
 
               <input type="text"
                 className="mb-0"
                 onChange={ev => handlePropertyValuesChange(index, property, ev.target.value)}
                 value={property.values}
-                placeholder="พวกหิว" />
+                placeholder="สีต่างๆ" />
 
 
               <button
@@ -177,7 +177,7 @@ function Categories({ swal }) {
           <thead>
             <tr>
               <td>ชื่อหมวดหมู่สินค้า</td>
-              <td>Parent ของหมวดหมู่สินค้า</td>
+              {/* <td>Parent ของหมวดหมู่สินค้า</td> */}
               <td></td>
             </tr>
           </thead>
