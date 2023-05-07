@@ -51,6 +51,6 @@ export async function isAdminRequest(req, res) {
   if (!adminEmails.includes(session?.user?.email)) {
     res.status(403);
     res.end();
-    throw 'not and admin';
+    throw 'คุณไม่ได้เป็นแอดมิน';
   }
 }
