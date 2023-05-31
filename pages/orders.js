@@ -15,14 +15,14 @@ export default function OrdersPage() {
   }, []);
   return (
     <Layout>
-      <h1>Orders</h1>
+      <h1>คำสั่งซื้อ</h1>
       <table className="basic">
         <thead>
           <tr>
-            <th>Date</th>
-            <th>Paid</th>
-            <th>Recipient</th>
-            <th>Products</th>
+            <th>วันที่</th>
+            <th>ชำระ</th>
+            <th>ลูกค้า</th>
+            <th>สินค้า</th>
           </tr>
         </thead>
         <tbody>

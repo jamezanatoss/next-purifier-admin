@@ -8,7 +8,7 @@ export default function HomeHeader() {
         <div className="flex gap-2 items-center">
           <img src={session?.user?.image} alt="" className="w-6 h-6 rounded-md sm:hidden"/>
           <div>
-            Hello, <b>{session?.user?.name}</b>
+            สวัสดี ! คุณ <b>{session?.user?.name}</b>
           </div>
         </div>
       </h2>

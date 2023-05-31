@@ -41,32 +41,32 @@ function SettingsPage({swal}) {
     });
     setIsLoading(false);
     await swal.fire({
-      title: 'Settings saved!',
+      title: 'บันทึกสำเร็จ!',
       icon: 'success',
     });
   }
 
   return (
     <Layout>
-      <h1>Settings</h1>
+      <h1>การตั้งค่า</h1>
       {isLoading && (
         <Spinner />
       )}
       {!isLoading && (
         <>
-          <label>Featured product</label>
+          <label>สินค้า</label>
           <select value={featuredProductId} onChange={ev => setFeaturedProductId(ev.target.value)}>
             {products.length > 0 && products.map(product => (
               <option value={product._id}>{product.title}</option>
             ))}
           </select>
-          <label>Shipping price (บาท)</label>
+          <label>ค่าส่ง (บาท)</label>
           <input type="number"
                  value={shippingFee}
                  onChange={ev => setShippingFee(ev.target.value)}
           />
           <div>
-            <button onClick={saveSettings} className="btn-primary">Save settings</button>
+            <button onClick={saveSettings} className="btn-primary">บันทึก</button>
           </div>
         </>
       )}
