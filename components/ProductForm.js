@@ -18,25 +18,29 @@ export default function ProductForm({
   const [description, setDescription] = useState(existingDescription || '');
   const [category, setCategory] = useState(assignedCategory || '');
   const [productProperties, setProductProperties] = useState(assignedProperties || {});
-  const [price, setPrice] = useState(existingPrice || '');
+  const [price, setPrice] = useState(existingPrice || []);
   const [images, setImages] = useState(existingImages || []);
   const [goToProducts, setGoToProducts] = useState(false);
   const [isUploading, setIsUploading] = useState(false);
   const [categories, setCategories] = useState([]);
+  //const priceArray = price.split(',').map((num) => parseInt(num.trim(), 10));
   const router = useRouter();
   useEffect(() => {
+    
     axios.get('/api/categories').then(result => {
       setCategories(result.data);
     })
-  }, []);
+  }, []
+  );
+
+  
 
   async function saveProduct(ev) {
     ev.preventDefault();
     const data = {
       title, description, images, category,
       properties: productProperties,
-      price
-        : price.split(',').map((num) => parseInt(num.trim(), 10))
+      price: price.split(',').map((num) => parseInt(num.trim(), 10)),
     };
 
     if (_id) {
@@ -165,9 +169,10 @@ export default function ProductForm({
       <label>ราคา</label>
       <input
         type="text"
-        placeholder="เพิ่มราคา ใช้ || ขั้น"
+        placeholder="เพิ่มราคา ใช้ , ขั้น"
         value={price}
-        onChange={handlePriceChange} />
+        onChange={(event) => setPrice(event.target.value)}
+      />
 
       <button
         type="submit"
