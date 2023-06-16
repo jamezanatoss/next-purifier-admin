@@ -21,6 +21,7 @@ export default function OrdersPage() {
           <tr>
             <th>วันที่</th>
             <th>ชำระ</th>
+            <th>สถานะ</th>
             <th>ลูกค้า</th>
             <th>สินค้า</th>
           </tr>
@@ -42,6 +43,7 @@ export default function OrdersPage() {
             <td className={order.paid ? 'text-green-600' : 'text-red-600'}>
               {order.paid ? 'YES' : 'NO'}
             </td>
+            <td></td>
             <td>
               {order.name} {order.email}<br />
               {order.city} {order.postalCode} {order.country}<br />
