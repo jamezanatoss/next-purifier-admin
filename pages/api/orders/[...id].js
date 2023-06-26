@@ -1,11 +1,13 @@
-const { mongooseConnect } = require("@/lib/mongoose");
-const { Order } = require("@/models/Order");
+// pages/api/orders/[...id].js
+
+import { mongooseConnect } from "@/lib/mongoose";
+import { Order } from "@/models/Order";
 
 export default async function handler(req, res) {
   await mongooseConnect();
 
   if (req.method === "PUT") {
-    const { orderId } = req.query;
+    const orderId = req.query.id[0]; // Get the first item in the ID array
     const { status } = req.body;
 
     try {
@@ -22,7 +24,7 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "Failed to update order status" });
     }
   } else if (req.method === "GET") {
-    const { orderId } = req.query;
+    const orderId = req.query.id[0]; // Get the first item in the ID array
 
     if (orderId) {
       try {
@@ -52,6 +54,3 @@ export default async function handler(req, res) {
 
   return res.status(405).json({ error: "Method Not Allowed" });
 }
-
-
-
