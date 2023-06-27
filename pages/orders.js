@@ -90,7 +90,7 @@ export default function OrdersPage() {
               </td>
               <td>
                 {order.name} {order.email}<br />
-                {order.city} {order.postalCode} {order.country}<br />
+                {order.city} {order.postalCode} {order.phone}<br />
                 {order.streetAddress}
               </td>
               <td>

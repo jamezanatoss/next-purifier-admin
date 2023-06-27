@@ -6,6 +6,24 @@ import { Order } from "@/models/Order";
 export default async function handler(req, res) {
   await mongooseConnect();
 
+  if (req.method === "DELETE") {
+    const { orderId } = req.query;
+
+    try {
+      const deletedOrder = await Order.findByIdAndDelete(orderId);
+      if (!deletedOrder) {
+        console.log("Order not found:", orderId);
+        return res.status(404).json({ error: "Order not found" });
+      }
+
+      console.log("Deleted order:", deletedOrder);
+      return res.json({ message: "Order removed successfully" });
+    } catch (error) {
+      console.error("Failed to remove order:", error);
+      return res.status(500).json({ error: "Failed to remove order" });
+    }
+  }
+
   if (req.method === "PUT") {
     const orderId = req.query.id[0]; // Get the first item in the ID array
     const { status } = req.body;
