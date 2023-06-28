@@ -106,10 +106,10 @@ export default function ProductForm({
         placeholder="ชื่อสินค้า"
         value={title}
         onChange={ev => setTitle(ev.target.value)} />
-      <label>หมวดหมู่</label>
+      <label>แบรนด์สินค้า</label>
       <select value={category}
         onChange={ev => setCategory(ev.target.value)}>
-        <option value="">ไม่มีหมวดหมู่</option>
+        <option value="">ไม่มีแบรนด์สินค้า</option>
         {categories.length > 0 && categories.map(c => (
           <option key={c._id} value={c._id}>{c.name}</option>
         ))}

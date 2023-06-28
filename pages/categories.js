@@ -96,7 +96,7 @@ function Categories({ swal }) {
   }
   return (
     <Layout>
-      <h1>Categories</h1>
+      <h1>แบรนด์สินค้า</h1>
       <label>
         {editedCategory
           ? `แก้ไขแบรนด์สินค้า ${editedCategory.name}`
@@ -119,12 +119,12 @@ function Categories({ swal }) {
           </select> */}
         </div>
         <div className="mb-2">
-          <label className="block">คุณสมบัติ</label>
+          <label className="block">แบรนด์สินค้า</label>
           <button
             onClick={addProperty}
             type="button"
             className="btn btn-default text-sm mb-2">
-            เพิ่มคุณสมบัติใหม่ +
+            เพิ่มแบรนด์ใหม่ +
           </button>
           {properties.length > 0 && properties.map((property, index) => (
             <div key={property.value} className="flex gap-1 mb-2">
@@ -139,7 +139,7 @@ function Categories({ swal }) {
                 className="mb-0"
                 onChange={ev => handlePropertyValuesChange(index, property, ev.target.value)}
                 value={property.values}
-                placeholder="สีต่างๆ" />
+                placeholder="ประเภทสินค้า" />
 
 
               <button
@@ -176,7 +176,7 @@ function Categories({ swal }) {
         <table className="basic mt-4">
           <thead>
             <tr>
-              <td>ชื่อหมวดหมู่สินค้า</td>
+              <td>ชื่อแบรนด์สินค้า</td>
               {/* <td>Parent ของหมวดหมู่สินค้า</td> */}
               <td></td>
             </tr>
