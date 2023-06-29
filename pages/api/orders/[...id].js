@@ -35,7 +35,7 @@ export default async function handler(req, res) {
         return res.status(404).json({ error: "Order not found" });
       }
 
-      console.log("Updated order:", updatedOrder);
+      //console.log("Updated order:", updatedOrder);
       return res.json(updatedOrder);
     } catch (error) {
       console.error("Failed to update order status:", error);
@@ -61,7 +61,7 @@ export default async function handler(req, res) {
     } else {
       try {
         const orders = await Order.find().sort({ createdAt: -1 });
-        console.log("Retrieved orders:", orders);
+        //console.log("Retrieved orders:", orders);
         return res.json(orders);
       } catch (error) {
         console.error("Failed to retrieve orders:", error);

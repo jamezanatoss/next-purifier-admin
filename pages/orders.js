@@ -7,7 +7,8 @@ import Swal from 'sweetalert2';
 export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
-
+  
+  
   useEffect(() => {
     setIsLoading(true);
     axios.get('/api/orders').then(response => {
@@ -38,7 +39,33 @@ export default function OrdersPage() {
     }
   };
 
-  const showConfirmationDialog = (orderId) => {
+  const sendConfirmationEmail = async (orderId, email) => {
+  
+    try {
+      await axios.post('/api/send-email', {
+        recipient: email,
+        subject: 'จัดส่งสำเร็จ',
+        content: `เลขออเดอร์ ${orderId} จัดส่งสำเร็จแล้ว !`,
+        
+      });
+      console.log('Confirmation email sent');
+    } catch (error) {
+      console.error('Error sending confirmation email:', error);
+      console.log("orderId",orderId)
+      console.log("email",email)
+    }
+  };
+
+  const showConfirmationDialog = async (orderId) => {
+    const order = orders.find((order) => order._id === orderId);
+    if (!order) {
+      console.error('Order not found');
+      return;
+    }
+    
+    const { email } = order;
+    console.log(email);
+  
     Swal.fire({
       title: 'ยืนยันการเปลี่ยนสถานะ',
       text: 'คุณต้องการเปลี่ยนสถานะเป็น จัดส่งแล้ว ใช่หรือไม่?',
@@ -49,6 +76,7 @@ export default function OrdersPage() {
     }).then((result) => {
       if (result.isConfirmed) {
         handleChangeStatus(orderId);
+        sendConfirmationEmail(orderId, email);
       }
     });
   };
@@ -89,6 +117,7 @@ export default function OrdersPage() {
                 {order.paid ? (order.status === 'delivery' ? 'กำลังจัดส่ง' : 'จัดส่งแล้ว') : 'รอชำระ'}
               </td>
               <td>
+              <span style={{ color: "red" }}>ID: {order._id}</span><br />
                 {order.name} {order.email}<br />
                 {order.city} {order.postalCode} {order.phone}<br />
                 {order.streetAddress}
