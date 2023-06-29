@@ -3,6 +3,22 @@ const { Order } = require("@/models/Order");
 
 export default async function handler(req, res) {
   await mongooseConnect();
+  
+  if (req.method === "POST") {
+    const { orderData } = req.body;
+
+    try {
+      // Create a new order based on the received orderData
+      const newOrder = new Order(orderData);
+      const savedOrder = await newOrder.save();
+
+      console.log("Created order:", savedOrder);
+      return res.status(201).json(savedOrder);
+    } catch (error) {
+      console.error("Failed to create order:", error);
+      return res.status(500).json({ error: "Failed to create order" });
+    }
+  }
 
   if (req.method === "PUT") {
     const { orderId } = req.query;
@@ -32,7 +48,7 @@ export default async function handler(req, res) {
           return res.status(404).json({ error: "Order not found" });
         }
 
-        console.log("Retrieved order:", order);
+        //console.log("Retrieved order:", order);
         return res.json(order);
       } catch (error) {
         console.error("Failed to retrieve order:", error);

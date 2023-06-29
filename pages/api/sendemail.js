@@ -5,7 +5,7 @@ const router = express.Router();
 const email = process.env.EMAIL;
 const pass = process.env.EMAIL_PASS;
 
-router.post('/send-email', async (req, res) => {
+router.post('/sendemail', async (req, res) => {
   const { recipient, subject, content } = req.body;
 
   // Check if email and pass are defined
@@ -14,8 +14,7 @@ router.post('/send-email', async (req, res) => {
   }
 
   const transporter = nodemailer.createTransport({
-
-    service: "gmail",
+    service: 'gmail',
     auth: {
       user: email,
       pass: pass,
@@ -30,7 +29,6 @@ router.post('/send-email', async (req, res) => {
     text: content,
   };
 
-  console.log('mailOptions', mailOptions);
   try {
     // Send the email
     const info = await transporter.sendMail(mailOptions);

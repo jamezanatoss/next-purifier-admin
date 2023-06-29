@@ -8,7 +8,6 @@ export default function OrdersPage() {
   const [orders, setOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   
-  
   useEffect(() => {
     setIsLoading(true);
     axios.get('/api/orders').then(response => {
@@ -42,17 +41,15 @@ export default function OrdersPage() {
   const sendConfirmationEmail = async (orderId, email) => {
   
     try {
-      await axios.post('/api/send-email', {
+      await axios.post('/api/sendemail', {
         recipient: email,
         subject: 'จัดส่งสำเร็จ',
-        content: `เลขออเดอร์ ${orderId} จัดส่งสำเร็จแล้ว !`,
+        content: `เลขออเดอร์ ${orderId} จัดส่งสำเร็จแล้วววววว !`,
         
       });
       console.log('Confirmation email sent');
     } catch (error) {
       console.error('Error sending confirmation email:', error);
-      console.log("orderId",orderId)
-      console.log("email",email)
     }
   };
 
@@ -131,7 +128,7 @@ export default function OrdersPage() {
               </td>
               <td>
                 {order.paid && order.status === 'delivery' && (
-                  <button onClick={() => showConfirmationDialog(order._id)}
+                  <button key={order._id} onClick={() => showConfirmationDialog(order._id)}
                   style={{
                     backgroundColor: 'blue',
                     color: 'white',
