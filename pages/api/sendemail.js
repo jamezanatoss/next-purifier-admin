@@ -1,15 +1,12 @@
-const express = require('express');
 const nodemailer = require('nodemailer');
 
-const router = express.Router();
 const email = process.env.EMAIL;
-const pass = process.env.EMAIL_PASS;
+const appPassword = process.env.APP_PASSWORD;
 
-router.post('/sendemail', async (req, res) => {
+async function sendEmail(req, res) {
   const { recipient, subject, content } = req.body;
 
-  // Check if email and pass are defined
-  if (!email || !pass) {
+  if (!email || !appPassword) {
     return res.status(500).json({ error: 'Email credentials not found' });
   }
 
@@ -17,11 +14,10 @@ router.post('/sendemail', async (req, res) => {
     service: 'gmail',
     auth: {
       user: email,
-      pass: pass,
+      pass: appPassword,
     },
   });
 
-  // Create email message options
   const mailOptions = {
     from: email,
     to: recipient,
@@ -30,14 +26,16 @@ router.post('/sendemail', async (req, res) => {
   };
 
   try {
-    // Send the email
     const info = await transporter.sendMail(mailOptions);
     console.log('Email sent:', info.response);
     res.status(200).json({ message: 'Email sent successfully' });
   } catch (error) {
     console.error('Error sending email:', error);
-    res.status(500).json({ error: 'Failed to send email' });
+    res.status(500).json({ error: 'Failed to send email', errorMessage: error.message });
   }
-});
+}
 
-module.exports = router;
+module.exports = sendEmail;
+
+
+

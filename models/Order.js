@@ -12,7 +12,7 @@ const OrderSchema = new Schema(
     paid: Boolean,
     status: {
       type: String,
-      enum: ['waiting', 'delivery', 'shipped'],
+      enum: ['waiting', 'delivery', 'shipped','installed'],
       default: 'waiting'
     },
   },
